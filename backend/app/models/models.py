@@ -101,10 +101,17 @@ class Creator(Base):
         Enum(CreatorType, native_enum=False), nullable=False, default=CreatorType.PERSON
     )
     nationality_culture: Mapped[str | None] = mapped_column(String(255), nullable=True)
-    # Generic shape - covers both life-dates and active-periods (OOUX doc)
-    date_start: Mapped[int | None] = mapped_column(Integer, nullable=True)
-    date_end: Mapped[int | None] = mapped_column(Integer, nullable=True)
-    # Generic shape - covers birthplace/deathplace or active-location
+    # Generic shape - covers both life-dates and active-periods (OOUX doc).
+    # Text, not a normalized year (contrast Artwork.date_start_year/
+    # date_end_year, which stay real ints for century-derivation logic):
+    # real biographical dates are often uncertain or approximate - "about
+    # 1400", "1266 or 1267" - and forcing those into an int would just
+    # mean silently dropping the qualifier.
+    date_start: Mapped[str | None] = mapped_column(String(50), nullable=True)
+    date_end: Mapped[str | None] = mapped_column(String(50), nullable=True)
+    # Generic shape - covers birthplace/deathplace or active-location.
+    # Both nullable - not every creator's birthplace/deathplace is known
+    # (or relevant, e.g. an organization/culture attribution).
     place_start: Mapped[str | None] = mapped_column(String(255), nullable=True)
     place_end: Mapped[str | None] = mapped_column(String(255), nullable=True)
     bio: Mapped[str | None] = mapped_column(Text, nullable=True)

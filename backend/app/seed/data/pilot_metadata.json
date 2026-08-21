@@ -1,14 +1,14 @@
 {
-  "_comment": "The 7-piece pilot set (PRD Section 10). Title/Creator/Room/Floor come straight from the PRD's table. Creator nationality/life-dates/places and the per-artwork date_display/description/medium below are sourced from the Claude Design export's prototype copy (Gardner Lens.dc.html ARTWORK_DATA) - plausible and internally consistent with well-known public facts, but NOT confirmed as the Museum's own official curatorial text. Per user direction (2026-08-21): use it now so the app is fully populated, but treat it as unverified pending real Museum sign-off - do not present it to the Museum as final copy. accession_number stays TODO_CONTENT (never provided anywhere); seed_pilot.py refuses to treat a TODO_CONTENT value as real content.",
+  "_comment": "The 7-piece pilot set (PRD Section 10). Title/Creator/Room/Floor come straight from the PRD's table. Creator nationality/life-dates/places and the per-artwork date_display/description/medium below are sourced from the Claude Design export's prototype copy (Gardner Lens.dc.html ARTWORK_DATA) - plausible and internally consistent with well-known public facts, but NOT confirmed as the Museum's own official curatorial text. Per user direction (2026-08-21): use it now so the app is fully populated, but treat it as unverified pending real Museum sign-off - do not present it to the Museum as final copy. accession_number stays TODO_CONTENT (never provided anywhere); seed_pilot.py refuses to treat a TODO_CONTENT value as real content. Creator date_start/date_end are free text, not numbers (per user direction 2026-08-21) - real biographical dates are often approximate/uncertain ('About 1400', '1266 or 1267'), so these must always be quoted JSON strings, e.g. \"1856\" not 1856. place_start/place_end may be null or omitted entirely when unknown.",
 
   "creators": {
-    "John Singer Sargent": { "creator_type": "person", "nationality_culture": "American", "date_start": 1856, "date_end": 1925, "place_start": "Florence", "place_end": "London" },
-    "Titian": { "creator_type": "person", "nationality_culture": "Italian (Venetian)", "date_start": 1488, "date_end": 1576, "place_start": "Pieve di Cadore", "place_end": "Venice" },
-    "Fra Angelico": { "creator_type": "person", "nationality_culture": "Italian", "date_start": 1395, "date_end": 1455, "place_start": "Vicchio", "place_end": "Rome" },
-    "Giotto": { "creator_type": "person", "nationality_culture": "Italian", "date_start": 1267, "date_end": 1337, "place_start": "Florence", "place_end": "Florence" },
-    "Anders Zorn": { "creator_type": "person", "nationality_culture": "Swedish", "date_start": 1860, "date_end": 1920, "place_start": "Mora, Sweden", "place_end": "Mora" },
-    "Rembrandt van Rijn": { "creator_type": "person", "nationality_culture": "Dutch", "date_start": 1606, "date_end": 1669, "place_start": "Leiden", "place_end": "Amsterdam" },
-    "Isabella Stewart Gardner": { "creator_type": "person", "nationality_culture": "American", "date_start": 1840, "date_end": 1924, "place_start": "New York", "place_end": "Boston" }
+    "John Singer Sargent": { "creator_type": "person", "nationality_culture": "American", "date_start": "1856", "date_end": "1925", "place_start": "Florence", "place_end": "London" },
+    "Titian": { "creator_type": "person", "nationality_culture": "Italian (Venetian)", "date_start": "About 1488", "date_end": "1576", "place_start": "Pieve di Cadore", "place_end": "Venice" },
+    "Fra Angelico": { "creator_type": "person", "nationality_culture": "Italian", "date_start": "About 1400", "date_end": "1455", "place_start": "Vicchio", "place_end": "Rome" },
+    "Giotto": { "creator_type": "person", "nationality_culture": "Italian", "date_start": "1266 or 1267", "date_end": "1337", "place_start": "Florence", "place_end": "Florence" },
+    "Anders Zorn": { "creator_type": "person", "nationality_culture": "Swedish", "date_start": "1860", "date_end": "1920", "place_start": "Mora, Sweden", "place_end": "Mora" },
+    "Rembrandt van Rijn": { "creator_type": "person", "nationality_culture": "Dutch", "date_start": "1606", "date_end": "1669", "place_start": "Leiden", "place_end": "Amsterdam" },
+    "Isabella Stewart Gardner": { "creator_type": "person", "nationality_culture": "American", "date_start": "1840", "date_end": "1924", "place_start": "New York", "place_end": "Boston" }
   },
 
   "rooms": {

@@ -15,8 +15,8 @@ class CreatorOut(BaseModel):
     role: str
     creator_type: str
     nationality_culture: str | None = None
-    date_start: int | None = None
-    date_end: int | None = None
+    date_start: str | None = None
+    date_end: str | None = None
     place_start: str | None = None
     place_end: str | None = None
 

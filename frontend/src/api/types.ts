@@ -7,8 +7,8 @@ export interface CreatorOut {
   role: string;
   creator_type: "person" | "organization" | "culture_or_unknown";
   nationality_culture: string | null;
-  date_start: number | null;
-  date_end: number | null;
+  date_start: string | null;
+  date_end: string | null;
   place_start: string | null;
   place_end: string | null;
 }
