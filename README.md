@@ -89,6 +89,17 @@ cd backend && python -m app.seed.seed_pilot
 cd ../frontend && npm run dev
 ```
 
+### Deploying (a real HTTPS URL you can open on your phone)
+
+`docker compose` above runs frontend and backend as two separate dev
+processes, but `backend/Dockerfile` builds a **single** deployable image -
+the backend serves the built frontend from the same origin (one URL, no
+CORS to configure). Mobile browsers only grant camera access over HTTPS,
+so this - not local dev - is what "try it on my phone" actually needs.
+See `docs/deployment.md` for the exact steps (Render: create Postgres,
+create a Docker web service pointed at `backend/Dockerfile` with the repo
+root as build context, set one env var, deploy).
+
 ## Where things stand vs. the source docs
 
 - **Matching pipeline**: implements Technical Architecture Section 2

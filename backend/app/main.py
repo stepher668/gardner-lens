@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -61,3 +62,18 @@ def rebuild_reference_index() -> None:
 @app.get("/health")
 def health() -> dict:
     return {"status": "ok", "reference_artworks_indexed": reference_index.artwork_count}
+
+
+# Single-container deploy: the built frontend (frontend/dist, copied into
+# the image by backend/Dockerfile) is served from this same origin - no
+# separate frontend host, no CORS to configure for it. Mounted at "/" and
+# registered LAST, after every real route/mount above (Starlette matches
+# routes/mounts in registration order, and Mount("/") matches literally
+# every path - registering it any earlier would silently shadow /health,
+# /identify, etc. behind a 404 from StaticFiles instead of reaching them).
+# Absent in local dev (frontend runs via `npm run dev` instead), so this
+# only activates when the directory actually exists.
+if settings.frontend_dist_dir:
+    frontend_dist = Path(settings.frontend_dist_dir)
+    if frontend_dist.is_dir():
+        app.mount("/", StaticFiles(directory=frontend_dist, html=True), name="frontend")

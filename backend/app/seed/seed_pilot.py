@@ -5,7 +5,8 @@ populated - no admin UI for the pilot").
 
 Run from the `backend/` directory:
 
-    python -m app.seed.seed_pilot
+    python -m app.seed.seed_pilot            # always wipes + reseeds
+    python -m app.seed.seed_pilot --if-empty # no-op if artworks already exist
 
 Reads real photos from two folders under `data/pilot/` at the repo root
 (see `data/pilot/README.md`):
@@ -22,12 +23,16 @@ a placeholder pass silently as real content. `display` also falls back to
 a real `reference` photo when no dedicated display cut exists yet, rather
 than jumping straight to a placeholder.
 
-DESTRUCTIVE: wipes and rebuilds all pilot tables (including Visits) each
-run, since this is a one-time pilot-setup script, not a live migration
-tool.
+DESTRUCTIVE by default: wipes and rebuilds all pilot tables (including
+Visits) each run, since this was written as a one-time pilot-setup
+script, not a live migration tool. `--if-empty` (used by the deployed
+container's start command) makes it safe to run on every boot against a
+persistent Postgres: it's a no-op whenever the `artworks` table already
+has rows, so a redeploy never wipes real visitor Collections.
 """
 from __future__ import annotations
 
+import argparse
 import sys
 from pathlib import Path
 
@@ -120,18 +125,28 @@ def _resolve_display_photo(pilot_dir: Path, slug: str, reference_photos: list[Pa
     return reference_photos[0]
 
 
-def seed() -> None:
+def seed(if_empty: bool = False) -> None:
     settings = get_settings()
     pilot_dir = resolve_pilot_dir(settings)
     metadata = _load_metadata()
+
+    Base.metadata.create_all(bind=engine)
+
+    if if_empty:
+        db = SessionLocal()
+        try:
+            already_seeded = db.query(Artwork).first() is not None
+        finally:
+            db.close()
+        if already_seeded:
+            print("--if-empty: artworks already present, skipping seed.")
+            return
 
     print(
         "[!] Curatorial copy (dates/descriptions/medium/creator bios) is sourced from "
         "the Claude Design prototype export, not confirmed Museum records - see "
         "pilot_metadata.json's _comment before treating it as final."
     )
-
-    Base.metadata.create_all(bind=engine)
 
     db = SessionLocal()
     try:
@@ -243,4 +258,11 @@ def seed() -> None:
 
 
 if __name__ == "__main__":
-    sys.exit(seed() or 0)
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--if-empty",
+        action="store_true",
+        help="Skip seeding if the artworks table already has rows (safe on a persistent DB).",
+    )
+    args = parser.parse_args()
+    sys.exit(seed(if_empty=args.if_empty) or 0)

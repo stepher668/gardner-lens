@@ -16,7 +16,9 @@ services:
       retries: 10
 
   backend:
-    build: ./backend
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
     environment:
       GARDNER_LENS_DATABASE_URL: postgresql+psycopg2://gardner_lens:gardner_lens@postgres:5432/gardner_lens
       GARDNER_LENS_CORS_ORIGINS: '["http://localhost:5173"]'

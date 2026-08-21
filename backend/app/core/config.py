@@ -37,6 +37,13 @@ class Settings(BaseSettings):
     # Directory the seed script reads real/placeholder photos from
     pilot_data_dir: str = "../data/pilot"
 
+    # Built frontend (frontend/dist) to serve as static files, for the
+    # single-container deploy (Dockerfile builds the frontend into this
+    # path). Left unset for local dev, where the frontend runs separately
+    # via `npm run dev` - main.py only mounts it when the directory
+    # actually exists, so dev is unaffected.
+    frontend_dist_dir: str | None = None
+
 
 @lru_cache
 def get_settings() -> Settings:
