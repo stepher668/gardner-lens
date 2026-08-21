@@ -1,6 +1,10 @@
 import type { ArtworkDetailOut, ArtworkImageOut, CandidateOut, CollectionOut, IdentifyResult } from "./types";
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8000";
+// Same-origin ("") by default - correct for the single-container deploy,
+// where the backend serves this build itself (backend/Dockerfile).
+// Local dev sets VITE_API_BASE_URL explicitly via .env (copied from
+// .env.example) to point at the separately-running backend on :8000.
+const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "";
 
 async function asJson<T>(response: Response): Promise<T> {
   if (!response.ok) {
