@@ -332,7 +332,7 @@ function DidYouMeanOverlay({ candidates, onPick, onNoneOfThese }: DidYouMeanOver
     >
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
         <h2 id="dym-heading" ref={headingRef} tabIndex={-1} style={{ fontFamily: "var(--font-serif-display)", fontSize: 22, margin: 0, color: "#121212" }}>
-          Multiple Objects Found
+          Did You Mean…?
         </h2>
         <button
           onClick={onNoneOfThese}
