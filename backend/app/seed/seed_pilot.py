@@ -7,10 +7,20 @@ Run from the `backend/` directory:
 
     python -m app.seed.seed_pilot
 
-Reads real photos from `data/pilot/professional/<slug>/*.{jpg,jpeg,png}` at
-the repo root if present. If a piece has none there yet, generates a clearly
-labeled placeholder image instead and logs a warning - never lets a
-placeholder pass silently as real content.
+Reads real photos from two folders under `data/pilot/` at the repo root
+(see `data/pilot/README.md`):
+  - `display/<slug>/`   - the clean museum image shown in the Result
+    drawer and Collection grid (design brief 3.3: "the clean museum
+    reference image, not the visitor's own shot"). One is enough.
+  - `reference/<slug>/` - the fuller set of angles used for ORB matching
+    (Tech Arch Section 2). More is better, up to the ~3-4 the doc found
+    useful.
+
+If a piece has no real photos in one or both folders yet, this generates a
+clearly labeled placeholder image instead and logs a warning - never lets
+a placeholder pass silently as real content. `display` also falls back to
+a real `reference` photo when no dedicated display cut exists yet, rather
+than jumping straight to a placeholder.
 
 DESTRUCTIVE: wipes and rebuilds all pilot tables (including Visits) each
 run, since this is a one-time pilot-setup script, not a live migration
@@ -25,6 +35,7 @@ from sqlalchemy.orm import Session
 
 from app.core.config import get_settings
 from app.core.db import Base, SessionLocal, engine
+from app.core.paths import resolve_pilot_dir
 from app.matching.orb_pipeline import compute_descriptors, serialize
 from app.models import (
     Artwork,
@@ -47,13 +58,15 @@ import json
 METADATA_PATH = Path(__file__).resolve().parent / "data" / "pilot_metadata.json"
 IMAGE_EXTENSIONS = (".jpg", ".jpeg", ".png")
 
+# Web-facing path prefix main.py mounts `data/pilot/` under (see
+# app.mount("/media/pilot", ...)) - stored in the DB instead of a raw
+# filesystem path so the frontend can actually load these images.
+MEDIA_URL_PREFIX = "/media/pilot"
 
-def _repo_pilot_dir(configured: str) -> Path:
-    configured_path = Path(configured)
-    if configured_path.is_absolute():
-        return configured_path
-    repo_root = Path(__file__).resolve().parents[3]
-    return repo_root / "data" / "pilot"
+
+def _web_url(pilot_dir: Path, photo_path: Path) -> str:
+    relative = photo_path.relative_to(pilot_dir)
+    return f"{MEDIA_URL_PREFIX}/{relative.as_posix()}"
 
 
 def _load_metadata() -> dict:
@@ -74,25 +87,42 @@ def _find_real_photos(pilot_dir: Path, subset: str, slug: str) -> list[Path]:
     return sorted(p for p in folder.iterdir() if p.suffix.lower() in IMAGE_EXTENSIONS)
 
 
-def _ensure_professional_photos(pilot_dir: Path, slug: str, title: str) -> list[Path]:
-    """Returns paths to this piece's professional reference photos, real if
-    present, else a generated + saved placeholder (so re-runs are stable
-    and a human can see what got generated on disk)."""
-    real = _find_real_photos(pilot_dir, "professional", slug)
+def _ensure_reference_photos(pilot_dir: Path, slug: str, title: str) -> list[Path]:
+    """Returns paths to this piece's ORB reference photos (`reference/`),
+    real if present, else a generated + saved placeholder (so re-runs are
+    stable and a human can see what got generated on disk)."""
+    real = _find_real_photos(pilot_dir, "reference", slug)
     if real:
         return real
 
-    print(f"  [!] No real professional photo for '{title}' ({slug}) - generating a placeholder.")
-    folder = pilot_dir / "professional" / slug
+    print(f"  [!] No real reference photo for '{title}' ({slug}) - generating a placeholder.")
+    folder = pilot_dir / "reference" / slug
     folder.mkdir(parents=True, exist_ok=True)
     out_path = folder / "placeholder_01.jpg"
     out_path.write_bytes(generate_placeholder_image(title, slug, variant=0))
     return [out_path]
 
 
+def _resolve_display_photo(pilot_dir: Path, slug: str, reference_photos: list[Path]) -> Path:
+    """The clean image for the Result drawer / Collection grid. Prefers a
+    dedicated `display/<slug>/` cut; falls back to the first reference
+    photo (real photos only - never a reference placeholder standing in as
+    "the" display image) before finally falling back to a placeholder of
+    its own."""
+    real_display = _find_real_photos(pilot_dir, "display", slug)
+    if real_display:
+        return real_display[0]
+
+    real_reference = [p for p in reference_photos if "placeholder" not in p.stem]
+    if real_reference:
+        return real_reference[0]
+
+    return reference_photos[0]
+
+
 def seed() -> None:
     settings = get_settings()
-    pilot_dir = _repo_pilot_dir(settings.pilot_data_dir)
+    pilot_dir = resolve_pilot_dir(settings)
     metadata = _load_metadata()
 
     Base.metadata.create_all(bind=engine)
@@ -170,27 +200,33 @@ def seed() -> None:
                     )
                 )
 
-            photo_paths = _ensure_professional_photos(pilot_dir, slug, title)
+            reference_photos = _ensure_reference_photos(pilot_dir, slug, title)
+            display_photo = _resolve_display_photo(pilot_dir, slug, reference_photos)
 
-            # First professional photo doubles as the clean display image
-            # (design brief 3.3: "the clean museum reference image, not
-            # the visitor's own shot"). alt_text left unset so the API
-            # serializer's title/creator fallback (Tech Arch Section 9) is
-            # exercised rather than duplicated here.
-            db.add(ArtworkImage(artwork_id=artwork.id, url=str(photo_paths[0]), alt_text=None))
+            # The clean display image (design brief 3.3: "the clean museum
+            # reference image, not the visitor's own shot"). alt_text left
+            # unset so the API serializer's title/creator fallback (Tech
+            # Arch Section 9) is exercised rather than duplicated here.
+            db.add(
+                ArtworkImage(
+                    artwork_id=artwork.id,
+                    url=_web_url(pilot_dir, display_photo),
+                    alt_text=None,
+                )
+            )
 
-            for photo_path in photo_paths:
+            for photo_path in reference_photos:
                 image_bytes = photo_path.read_bytes()
                 descriptor_set = compute_descriptors(image_bytes)
                 db.add(
                     ReferencePhoto(
                         artwork_id=artwork.id,
-                        image_url=str(photo_path),
+                        image_url=_web_url(pilot_dir, photo_path),
                         orb_descriptors=serialize(descriptor_set),
                     )
                 )
 
-            print(f"  seeded '{title}' with {len(photo_paths)} reference photo(s)")
+            print(f"  seeded '{title}' with {len(reference_photos)} reference photo(s), display: {display_photo.name}")
 
         db.commit()
         print("Done.")
