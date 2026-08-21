@@ -9,6 +9,8 @@ export interface CreatorOut {
   nationality_culture: string | null;
   date_start: number | null;
   date_end: number | null;
+  place_start: string | null;
+  place_end: string | null;
 }
 
 export interface ArtworkImageOut {

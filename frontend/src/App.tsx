@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import { getArtwork } from "./api/client";
 import { Camera } from "./screens/Camera";
 import { Collection } from "./screens/Collection";
 import { Landing } from "./screens/Landing";
@@ -9,7 +10,7 @@ import type { ArtworkDetailOut } from "./api/types";
 type Screen = "collection" | "camera";
 
 function AppShell() {
-  const { sessionId, setSessionId, collection, refreshCollection, hasSeenLanding, markLandingSeen } = useSession();
+  const { sessionId, setSessionId, collection, refreshCollection, hasSeenLanding, markLandingSeen, resetSession } = useSession();
   const [screen, setScreen] = useState<Screen>("camera");
   const [resultArtwork, setResultArtwork] = useState<ArtworkDetailOut | null>(null);
 
@@ -29,6 +30,24 @@ function AppShell() {
     setScreen("camera");
   }, []);
 
+  const handleGoToCollection = useCallback(() => setScreen("collection"), []);
+
+  const handleSelectCollectionItem = useCallback(async (artworkId: string) => {
+    try {
+      const artwork = await getArtwork(artworkId);
+      setResultArtwork(artwork);
+    } catch {
+      // Transient failure - the visitor just stays on Collection; nothing
+      // destructive happened, so no error UI needed for this pass.
+    }
+  }, []);
+
+  const handleResetSession = useCallback(() => {
+    setResultArtwork(null);
+    setScreen("camera");
+    resetSession();
+  }, [resetSession]);
+
   if (!hasSeenLanding) {
     return (
       <Landing
@@ -43,9 +62,15 @@ function AppShell() {
   return (
     <>
       {screen === "camera" ? (
-        <Camera sessionId={sessionId} onSessionId={setSessionId} onResolved={handleResolved} />
+        <Camera
+          sessionId={sessionId}
+          onSessionId={setSessionId}
+          onResolved={handleResolved}
+          collectionCount={collection?.count ?? 0}
+          onGoToCollection={handleGoToCollection}
+        />
       ) : (
-        <Collection collection={collection} onNewPic={handleNewPic} />
+        <Collection collection={collection} onNewPic={handleNewPic} onResetSession={handleResetSession} onSelectItem={(id) => void handleSelectCollectionItem(id)} />
       )}
       {resultArtwork && <ResultDrawer artwork={resultArtwork} onClose={handleCloseDrawer} onNewPic={handleNewPic} />}
     </>

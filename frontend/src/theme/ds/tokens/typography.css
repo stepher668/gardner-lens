@@ -1,0 +1,49 @@
+/* Font Families */
+:root {
+  --font-sans: "Futura PT Webfont", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif: "DTL Elzevir Webfont", Georgia, serif;
+  --font-serif-display: "DTL Elzevir Webfont", Georgia, serif;
+  --font-serif-tabular: "DTL Elzevir Tabular Webfont", monospace;
+  --font-family-body: var(--font-sans);
+  --font-family-heading: var(--font-sans);
+  --font-family-display: var(--font-serif-display);
+}
+
+/* Font Weights */
+:root {
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-heavy: 900;
+}
+
+/* Font Sizes */
+:root {
+  --font-size-xs: 13px;
+  --font-size-sm: 15px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 30px;
+  --font-size-3xl: 36px;
+  --font-size-4xl: 48px;
+}
+
+/* Line Heights */
+:root {
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  --line-height-loose: 2;
+}
+
+/* Letter Spacing */
+:root {
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.05em;
+  --letter-spacing-wider: 0.1em;
+}

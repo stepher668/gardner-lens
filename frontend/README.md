@@ -18,13 +18,24 @@ npm run dev
 
 ```
 src/
-  api/          typed client for the backend (mirrors backend/app/schemas)
+  api/          typed client for the backend (mirrors backend/app/schemas);
+                also resolves server-relative image URLs against the API
+                origin (see client.ts's resolveImage)
   state/        SessionContext - session_id + collection, persisted to
                 localStorage
   screens/      Landing, Camera (owns all 3 match-result overlays),
                 ResultDrawer, Collection
-  components/   shared building blocks, incl. the Phase 2-4 UI teases
-                (SimilarWorksTease, EmailMeButton, PlantRevealTease)
-  theme/        tokens.css - isolated so the real imported Claude Design
-                system can replace it without touching component code
+  components/   CandidateCard, CollectionGridItem
+  ds/           real design-system components (Button, IconTextButton,
+                Card, Input) reimplemented from the Claude Design export's
+                bundle - see ds/README (once added) or theme/ds/README.md
+  theme/
+    ds/         tokens/fonts/styles.css copied verbatim from the Claude
+                Design export - see theme/ds/README.md before editing
+    tokens.css  the app-specific layer on top (imports ds/styles.css +
+                global resets/focus states)
 ```
+
+Similar Works, Email Me, and the Courtyard Plant are visual-only teases in
+this pass (Phase 2-4) - see the inline comments in `ResultDrawer.tsx` and
+`Collection.tsx` for exactly what's real vs. a placeholder.

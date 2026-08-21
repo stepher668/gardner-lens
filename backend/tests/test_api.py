@@ -88,15 +88,22 @@ def test_repeat_capture_of_same_piece_does_not_duplicate_collection_entry(client
 
 def test_artwork_detail_multi_creator_display_is_honest(client: TestClient, db):
     """Portrait of Isabella Stewart Gardner: Sargent is the maker, Isabella
-    Stewart Gardner is the subject - the byline must not imply she made
-    it (OOUX doc Open Item 2)."""
+    Stewart Gardner is the subject. The byline (matching the approved
+    Claude Design export) shows only the maker - it must never imply she
+    made it (OOUX doc Open Item 2) - but the full creators list still
+    carries both, roles intact, for anything that needs the complete data
+    (e.g. the Phase 4 plant algorithm's Same-Creator-as-subject lookup)."""
     artwork_id = artwork_id_by_title(db, "Portrait of Isabella Stewart Gardner")
 
     resp = client.get(f"/artwork/{artwork_id}")
     assert resp.status_code == 200
     body = resp.json()
-    assert body["creator_display"] == "John Singer Sargent, Isabella Stewart Gardner (subject)"
+    assert body["creator_display"] == "John Singer Sargent"
     assert len(body["creators"]) == 2
+    assert {c["name"]: c["role"] for c in body["creators"]} == {
+        "John Singer Sargent": "artist",
+        "Isabella Stewart Gardner": "subject",
+    }
 
 
 def test_collection_unknown_session_returns_empty_state(client: TestClient):

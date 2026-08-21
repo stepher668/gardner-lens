@@ -125,6 +125,12 @@ def seed() -> None:
     pilot_dir = resolve_pilot_dir(settings)
     metadata = _load_metadata()
 
+    print(
+        "[!] Curatorial copy (dates/descriptions/medium/creator bios) is sourced from "
+        "the Claude Design prototype export, not confirmed Museum records - see "
+        "pilot_metadata.json's _comment before treating it as final."
+    )
+
     Base.metadata.create_all(bind=engine)
 
     db = SessionLocal()
@@ -155,6 +161,8 @@ def seed() -> None:
                 nationality_culture=info.get("nationality_culture"),
                 date_start=info.get("date_start"),
                 date_end=info.get("date_end"),
+                place_start=info.get("place_start"),
+                place_end=info.get("place_end"),
             )
             db.add(creator)
             creator_by_name[name] = creator

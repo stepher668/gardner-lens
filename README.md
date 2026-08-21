@@ -14,6 +14,11 @@ Works, Email Me, and the Courtyard Plant section (Phases 2-4) render as
 visual teases per the design brief's screens, but aren't functionally wired
 yet.
 
+The UI is built from the real Claude Design export (`Museum_Photo_
+Recognition_App.zip`, imported 2026-08-21): real DTL Elzevir/Futura PT
+fonts, real design tokens, and real Button/Card/IconTextButton components
+- see `frontend/src/theme/ds/README.md`.
+
 ## Layout
 
 ```
@@ -23,20 +28,20 @@ yet.
 docker-compose.yml   Postgres + backend for local dev
 ```
 
-## Before you start: pilot photos and curatorial copy
+## Before this goes anywhere near the real Museum: content status
 
-The seed script (`backend/app/seed/seed_pilot.py`) will run without real
-photos - it generates clearly-labeled placeholder images so the app is
-runnable/testable end to end. But it is **not museum-ready** until:
+Real pilot photos are in (`data/pilot/display/` + `data/pilot/reference/`,
+7 pieces). Curatorial copy (date/description/medium/creator bios) is also
+filled in, but **it's sourced from the Claude Design prototype's copy, not
+confirmed Museum records** - see the `_comment` at the top of
+`backend/app/seed/data/pilot_metadata.json` and the warning the seed
+script prints on every run. Treat it as a strong placeholder, not final
+text to show the Museum. `accession_number` is still `TODO_CONTENT` -
+never provided anywhere.
 
-1. Real professional/visitor photos are dropped into `data/pilot/` (see
-   `data/pilot/README.md` for the exact folder layout).
-2. Real curatorial copy - each piece's date, description, medium, and
-   accession number - replaces the `TODO_CONTENT` placeholders in
-   `backend/app/seed/data/pilot_metadata.json`. Those four fields are
-   genuine Museum cataloging data that isn't in any of the source docs,
-   so they were deliberately left as obvious placeholders rather than
-   invented.
+If a future piece is added without real photos, the seed script falls
+back to a clearly-labeled generated placeholder rather than failing (see
+`data/pilot/README.md`).
 
 ## Running it locally
 
@@ -94,13 +99,17 @@ cd ../frontend && npm run dev
   field; multi-creator display honesty (OOUX "Open Items" #1/#2) is
   implemented in `backend/app/schemas/formatting.py`.
 - **Similar Works, Email Me, Courtyard Plant**: UI-only teases (Phase
-  2-4), not backed by real endpoints yet - see the frontend component
-  docstrings (`SimilarWorksTease`, `EmailMeButton`, `PlantRevealTease`)
-  and the "Explicitly not in this pass" note in the build plan.
+  2-4), not backed by real endpoints yet - see the inline comments in
+  `frontend/src/screens/ResultDrawer.tsx` and `Collection.tsx`.
 - **Accessibility**: focus states, alt text, real text labels on
-  candidates, an accessible file-input camera fallback, and a
-  `.high-contrast`-mode hook are all implemented per design brief Section
-  4 / Tech Arch Section 9 - see `frontend/src/theme/tokens.css` and
-  `frontend/src/components/HighContrastToggle.tsx`. The real site's
-  actual high-contrast mechanism should replace the placeholder rules
-  there once the Claude Design import lands.
+  candidates, and an accessible file-input camera fallback are implemented
+  per design brief Section 4 / Tech Arch Section 9. High-contrast mode is
+  explicitly **not** built this pass - the Claude Design export has no
+  `.high-contrast` mechanism to reuse (confirmed absent from every token/
+  CSS file it contains), and per user direction (2026-08-21) it's deferred
+  rather than hand-rolled against tokens that might not match a future
+  real one.
+- **Design system**: `frontend/src/theme/ds/` (tokens/fonts/styles.css)
+  and `frontend/src/ds/` (Button/IconTextButton/Card/Input) are pulled
+  directly from the Claude Design export, not hand-authored - see
+  `frontend/src/theme/ds/README.md` before editing either.

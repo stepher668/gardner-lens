@@ -31,6 +31,8 @@ def to_artwork_detail(artwork: Artwork) -> ArtworkDetailOut:
             nationality_culture=link.creator.nationality_culture,
             date_start=link.creator.date_start,
             date_end=link.creator.date_end,
+            place_start=link.creator.place_start,
+            place_end=link.creator.place_end,
         )
         for link in links
     ]

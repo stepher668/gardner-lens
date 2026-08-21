@@ -1,0 +1,115 @@
+/* Color Primitives */
+:root {
+  --color-neutral-black: #121212;
+  --color-neutral-grey-darkest: #464140;
+  --color-neutral-grey-dark: #77706e;
+  --color-neutral-grey-light: #e0e0e0;
+  --color-neutral-grey-lightest: #f3f3f3;
+  --color-neutral-white: #ffffff;
+  --color-brand-green-accent: #20aa4d;
+  --color-brand-green-dark: #19883d;
+  --color-brand-green-darkest: #0e5322;
+  --color-brand-blue-accent: #00aeef;
+  --color-brand-blue-dark: #006c94;
+  --color-brand-blue-darkest: #00455e;
+  --color-brand-yellow-accent: #fff200;
+  --color-brand-yellow-dark: #77706e;
+  --color-brand-yellow-darkest: #464140;
+  --color-brand-orange-accent: #f58220;
+  --color-brand-orange-dark: #b46018;
+  --color-brand-orange-darkest: #944b10;
+  --color-brand-indigo-accent: #3d439b;
+  --color-brand-indigo-dark: #393f93;
+  --color-brand-indigo-darkest: #30367d;
+  --color-brand-magenta-accent: #e54c9a;
+  --color-brand-magenta-dark: #cd3c8a;
+  --color-brand-magenta-darkest: #a83876;
+  --color-brand-red-accent: #ef473b;
+  --color-brand-red-dark: #d64036;
+  --color-brand-red-darkest: #ad3b34;
+}
+
+/* Semantic Color Aliases */
+:root {
+  --color-text-primary: var(--color-neutral-black);
+  --color-text-secondary: var(--color-neutral-grey-dark);
+  --color-text-light: var(--color-neutral-grey-light);
+  --color-text-inverse: var(--color-neutral-white);
+  --color-background-default: var(--color-neutral-grey-lightest);
+  --color-background-surface: var(--color-neutral-white);
+  --color-background-overlay: rgba(0, 0, 0, 0.4);
+  --color-border-default: var(--color-neutral-grey-light);
+  --color-link: var(--color-brand-green-dark);
+  --color-link-hover: var(--color-brand-green-darkest);
+  --color-success: var(--color-brand-green-accent);
+  --color-warning: var(--color-brand-orange-accent);
+  --color-error: var(--color-brand-red-accent);
+  --color-info: var(--color-brand-blue-accent);
+  --btn-bg: var(--color-brand-green-darkest);
+  --btn-border: var(--color-brand-green-darkest);
+  --btn-text: var(--color-neutral-white);
+  --btn-bg-hfa: var(--color-brand-green-dark);
+  --btn-border-hfa: var(--color-brand-green-accent);
+  --btn-text-hfa: var(--color-neutral-white);
+}
+
+/* Theme: Primary Green */
+.theme-green,
+.theme-default {
+  --color-accent: var(--color-brand-green-dark);
+  --color-accent-light: var(--color-brand-green-accent);
+  --color-accent-dark: var(--color-brand-green-darkest);
+}
+
+/* Theme: Blue */
+.theme-blue {
+  --color-accent: var(--color-brand-blue-dark);
+  --color-accent-light: var(--color-brand-blue-accent);
+  --color-accent-dark: var(--color-brand-blue-darkest);
+}
+
+/* Theme: Orange */
+.theme-orange {
+  --color-accent: var(--color-brand-orange-dark);
+  --color-accent-light: var(--color-brand-orange-accent);
+  --color-accent-dark: var(--color-brand-orange-darkest);
+}
+
+/* Theme: Indigo */
+.theme-indigo {
+  --color-accent: var(--color-brand-indigo-dark);
+  --color-accent-light: var(--color-brand-indigo-accent);
+  --color-accent-dark: var(--color-brand-indigo-darkest);
+}
+
+/* Theme: Red */
+.theme-red {
+  --color-accent: var(--color-brand-red-dark);
+  --color-accent-light: var(--color-brand-red-accent);
+  --color-accent-dark: var(--color-brand-red-darkest);
+}
+
+/* Theme: Magenta */
+.theme-magenta {
+  --color-accent: var(--color-brand-magenta-dark);
+  --color-accent-light: var(--color-brand-magenta-accent);
+  --color-accent-dark: var(--color-brand-magenta-darkest);
+}
+
+/* Mode: Dark
+   Apply `.dark` alongside a `.theme-*` class (e.g. on <body> or a section
+   container) to flip the neutral/semantic tokens below to dark-surface
+   equivalents. Brand accent colors are unchanged — they're already vivid
+   enough to hold contrast on dark surfaces. */
+.dark {
+  --color-text-primary: var(--color-neutral-white);
+  --color-text-secondary: var(--color-neutral-grey-light);
+  --color-text-light: var(--color-neutral-grey-dark);
+  --color-text-inverse: var(--color-neutral-black);
+  --color-background-default: #1a1a1a;
+  --color-background-surface: #242424;
+  --color-background-overlay: rgba(0, 0, 0, 0.6);
+  --color-border-default: var(--color-neutral-grey-darkest);
+  --color-link: var(--color-brand-green-accent);
+  --color-link-hover: var(--color-neutral-white);
+}

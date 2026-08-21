@@ -17,6 +17,8 @@ class CreatorOut(BaseModel):
     nationality_culture: str | None = None
     date_start: int | None = None
     date_end: int | None = None
+    place_start: str | None = None
+    place_end: str | None = None
 
 
 class ArtworkImageOut(BaseModel):

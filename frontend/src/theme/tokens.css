@@ -1,65 +1,11 @@
 /*
-Placeholder design tokens - deliberately isolated in this one file so the
-real imported Claude Design system (built on gardnermuseum.org's "isgm17"
-theme, per design brief Section 6) can replace these values wholesale
-without touching component markup/logic anywhere else.
-
-Sourced from design brief Section 6 ("Visual System"):
-  - Typography: DTL Elzevir (serif, headings) / Futura PT (sans, body/UI) -
-    real webfont files aren't available yet, so these fall back to system
-    serif/sans stacks until the import lands.
-  - Shape/interaction: sharp corners (no rounding), outlined buttons that
-    invert to filled on hover/focus, 4:3 card image ratio.
-  - Color: three non-repeating section hues - indigo (Landing), orange
-    (in-app default: Camera, all 3 match tiers, Result drawer, Collection),
-    green (Courtyard Plant section within Collection).
+Real design tokens, fonts, and theme classes - imported verbatim from the
+Claude Design export (see ./ds/README.md). This file is the thin
+app-specific layer on top: global resets, the focus-visible convention
+(Tech Arch Section 9: "the real site's 2px solid currentColor convention"),
+and a couple of small utility classes reused across screens.
 */
-
-:root {
-  --font-serif: "DTL Elzevir Webfont", Georgia, "Times New Roman", serif;
-  --font-sans: "Futura PT Webfont", -apple-system, "Segoe UI", Roboto, sans-serif;
-
-  --radius: 0; /* sharp corners, no rounding, per design brief */
-
-  --color-bg: #faf6f0;
-  --color-surface: #ffffff;
-  --color-text: #1c1a17;
-  --color-text-muted: #5b564d;
-  --color-border: #d8d2c6;
-
-  --color-indigo: #363a78;
-  --color-orange: #c45a20;
-  --color-green: #3f6b3f;
-
-  /* The section-level accent - overridden per screen via .theme-* below */
-  --accent: var(--color-orange);
-  --accent-contrast: #ffffff;
-
-  --focus-ring: 2px solid currentColor;
-  --focus-ring-offset: 2px;
-
-  --image-ratio: 4 / 3;
-
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-}
-
-/* Section hues (design brief Section 6: deliberately non-repeating across
-   a single visitor session - indigo Landing -> orange everywhere else in
-   Phase 1 -> green only inside the Collection screen's Plant section). */
-.theme-indigo {
-  --accent: var(--color-indigo);
-}
-.theme-orange {
-  --accent: var(--color-orange);
-}
-.theme-green {
-  --accent: var(--color-green);
-}
+@import "./ds/styles.css";
 
 * {
   box-sizing: border-box;
@@ -73,23 +19,10 @@ body,
 
 body {
   margin: 0;
-  background: var(--color-bg);
-  color: var(--color-text);
+  background: var(--color-background-default);
+  color: var(--color-text-primary);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-}
-
-h1,
-h2,
-h3 {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  margin: 0 0 var(--space-2);
-}
-
-p {
-  margin: 0 0 var(--space-4);
-  line-height: 1.5;
 }
 
 img {
@@ -97,88 +30,23 @@ img {
   display: block;
 }
 
-/* Focus states - the real site's 2px solid currentColor convention (Tech
-   Arch Section 9), applied to every interactive element, not just buttons. */
+/* Focus states on every interactive element, per the real site's
+   convention (Tech Arch Section 9) - never removed, only ever added to by
+   a component's own hover/focus styling. */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 [tabindex]:focus-visible {
-  outline: var(--focus-ring);
-  outline-offset: var(--focus-ring-offset);
-}
-
-/* Outlined -> filled-on-hover/focus button, per design brief Section 6. */
-.btn {
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  border: 2px solid var(--accent);
-  border-radius: var(--radius);
-  background: transparent;
-  color: var(--accent);
-  padding: var(--space-3) var(--space-6);
-  cursor: pointer;
-  transition: background-color 0.15s ease, color 0.15s ease;
-}
-
-.btn:hover,
-.btn:focus-visible {
-  background: var(--accent);
-  color: var(--accent-contrast);
-}
-
-.btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.btn-secondary {
-  border-color: var(--color-border);
-  color: var(--color-text);
-}
-.btn-secondary:hover,
-.btn-secondary:focus-visible {
-  background: var(--color-text);
-  border-color: var(--color-text);
-  color: var(--color-surface);
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
 }
 
 .card-image {
   width: 100%;
-  aspect-ratio: var(--image-ratio);
+  aspect-ratio: 4 / 3;
   object-fit: cover;
-  background: var(--color-border);
-}
-
-/*
-High-contrast mode hook. Design brief Section 6: "confirm the imported
-system's .high-contrast accessibility mode carried over ... worth reusing
-rather than rebuilding." The real site's actual mechanism isn't available
-in this repo yet, so this is a functional placeholder implementing the
-same *shape* of feature (a toggle, applied at the document root, persisted
-per-visitor) so it's a drop-in swap once the real CSS lands.
-*/
-:root[data-high-contrast="true"] {
-  --color-bg: #ffffff;
-  --color-surface: #ffffff;
-  --color-text: #000000;
-  --color-text-muted: #1a1a1a;
-  --color-border: #000000;
-  --accent-contrast: #ffffff;
-}
-:root[data-high-contrast="true"] .theme-indigo {
-  --accent: #1a1a5e;
-}
-:root[data-high-contrast="true"] .theme-orange {
-  --accent: #8a3c10;
-}
-:root[data-high-contrast="true"] .theme-green {
-  --accent: #204020;
-}
-:root[data-high-contrast="true"] .btn {
-  border-width: 3px;
+  background: var(--color-neutral-grey-light);
+  display: block;
 }
 
 .visually-hidden {
@@ -191,4 +59,14 @@ per-visitor) so it's a drop-in swap once the real CSS lands.
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+@keyframes gl-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
 }
