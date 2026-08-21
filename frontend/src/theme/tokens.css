@@ -1,0 +1,72 @@
+/*
+Real design tokens, fonts, and theme classes - imported verbatim from the
+Claude Design export (see ./ds/README.md). This file is the thin
+app-specific layer on top: global resets, the focus-visible convention
+(Tech Arch Section 9: "the real site's 2px solid currentColor convention"),
+and a couple of small utility classes reused across screens.
+*/
+@import "./ds/styles.css";
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-background-default);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Focus states on every interactive element, per the real site's
+   convention (Tech Arch Section 9) - never removed, only ever added to by
+   a component's own hover/focus styling. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.card-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--color-neutral-grey-light);
+  display: block;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes gl-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}

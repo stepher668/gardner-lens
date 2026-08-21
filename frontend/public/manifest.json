@@ -1,0 +1,14 @@
+{
+  "name": "Gardner Lens",
+  "short_name": "Gardner Lens",
+  "description": "Photograph a piece at the Isabella Stewart Gardner Museum to see what a label would have told you.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf6f0",
+  "theme_color": "#c45a20",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

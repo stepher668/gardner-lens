@@ -1,0 +1,6 @@
+/* Box Shadows */
+:root {
+  --shadow-sm: 0px 4px 4px -4px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0px 20px 20px -20px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0px 24px 48px rgba(0, 0, 0, 0.2);
+}

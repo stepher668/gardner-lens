@@ -1,0 +1,65 @@
+@import "tokens/colors.css";
+@import "tokens/typography.css";
+@import "tokens/spacing.css";
+@import "tokens/borders.css";
+@import "tokens/shadows.css";
+@import "tokens/transitions.css";
+@import "tokens/themes.css";
+/* forced recompile */
+
+@font-face {
+  font-family: "DTL Elzevir Webfont";
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/dtl-elzevir/dtl-elzevir-regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "DTL Elzevir Webfont";
+  font-style: normal;
+  font-weight: 700;
+  src: url("fonts/dtl-elzevir/dtl-elzevir-bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "DTL Elzevir Tabular Webfont";
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/dtl-elzevir-regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Futura PT Webfont";
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/futura-pt/futura-pt-book.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Futura PT Webfont";
+  font-style: normal;
+  font-weight: 500;
+  src: url("fonts/futura-pt/futura-pt-medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Futura PT Webfont";
+  font-style: normal;
+  font-weight: 600;
+  src: url("fonts/futura-pt/futura-pt-demi.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Futura PT Webfont";
+  font-style: normal;
+  font-weight: 700;
+  src: url("fonts/futura-pt/futura-pt-bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: block;
+  font-family: "isgm-icons";
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/isgm-icons/isgm-icons.woff") format("woff");
+}

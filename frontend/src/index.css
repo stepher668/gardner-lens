@@ -1,0 +1,9 @@
+@import "./theme/tokens.css";
+
+/*
+Screen/component layout now lives as inline styles in each component,
+mirroring the Claude Design export's own markup (Gardner Lens.dc.html is
+~100% inline-styled) so there's a direct, checkable correspondence between
+that export and this code. This file only holds the shared tokens import
+above - nothing screen-specific.
+*/

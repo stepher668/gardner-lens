@@ -1,0 +1,23 @@
+/* Border Widths */
+:root {
+  --border-width-thin: 1px;
+  --border-width-base: 2px;
+  --border-width-thick: 4px;
+}
+
+/* Border Radius */
+:root {
+  --radius-none: 0;
+  --radius-sm: 3px;
+  --radius-base: 5px;
+  --radius-md: 16px;
+  --radius-full: 50%;
+}
+
+/* Border Styles */
+:root {
+  --border-base: var(--border-width-thin) solid var(--color-border-default);
+  --border-dark: var(--border-width-thin) solid var(--color-neutral-grey-dark);
+  --border-accent: var(--border-width-thin) solid var(--color-accent);
+  --border-accent-thick: var(--border-width-base) solid var(--color-accent);
+}

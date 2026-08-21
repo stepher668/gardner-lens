@@ -1,0 +1,36 @@
+/* Spacing Scale */
+:root {
+  --space-xxs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 40px;
+  --space-3xl: 56px;
+  --space-4xl: 64px;
+  --space-5xl: 80px;
+  --space-6xl: 88px;
+  --space-7xl: 120px;
+}
+
+/* Mobile Spacing Overrides */
+@media (max-width: 529px) {
+  :root {
+    --space-lg: 20px;
+    --space-xl: 24px;
+    --space-2xl: 24px;
+    --space-3xl: 40px;
+    --space-4xl: 40px;
+    --space-5xl: 56px;
+    --space-6xl: 56px;
+    --space-7xl: 80px;
+  }
+}
+
+/* Gaps */
+:root {
+  --gap-xs: 6px;
+  --gap-sm: 8px;
+  --gap-md: 10px;
+}

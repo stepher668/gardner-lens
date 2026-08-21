@@ -1,0 +1,90 @@
+.theme-green, .theme-grey {
+  --brand-dark: var(--color-brand-green-dark);
+  --brand-darkest: var(--color-brand-green-darkest);
+  --accent: var(--color-brand-green-dark);
+  --frame: var(--color-brand-green-accent);
+  --btn-bg: var(--color-brand-green-darkest);
+  --btn-bg-hfa: var(--color-brand-green-dark);
+  --btn-text: var(--color-neutral-white);
+  --btn-text-hfa: var(--color-neutral-white);
+  --btn-border: var(--color-brand-green-accent);
+  --btn-border-hfa: var(--color-brand-green-accent);
+}
+
+.theme-blue {
+  --brand-dark: var(--color-brand-blue-dark);
+  --brand-darkest: var(--color-brand-blue-darkest);
+  --accent: var(--color-brand-blue-dark);
+  --frame: var(--color-brand-blue-accent);
+  --btn-bg: var(--color-brand-blue-darkest);
+  --btn-bg-hfa: var(--color-brand-blue-dark);
+  --btn-text: var(--color-neutral-white);
+  --btn-text-hfa: var(--color-neutral-white);
+  --btn-border: var(--color-brand-blue-accent);
+  --btn-border-hfa: var(--color-brand-blue-accent);
+}
+
+.theme-yellow {
+  --brand-dark: var(--color-brand-yellow-dark);
+  --brand-darkest: var(--color-brand-yellow-darkest);
+  --accent: var(--color-brand-yellow-dark);
+  --frame: var(--color-brand-yellow-accent);
+  --btn-bg: var(--color-brand-yellow-darkest);
+  --btn-bg-hfa: var(--color-brand-yellow-dark);
+  --btn-text: var(--color-neutral-white);
+  --btn-text-hfa: var(--color-neutral-white);
+  --btn-border: var(--color-brand-yellow-accent);
+  --btn-border-hfa: var(--color-brand-yellow-accent);
+}
+
+.theme-orange {
+  --brand-dark: var(--color-brand-orange-dark);
+  --brand-darkest: var(--color-brand-orange-darkest);
+  --accent: var(--color-brand-orange-dark);
+  --frame: var(--color-brand-orange-accent);
+  --btn-bg: var(--color-brand-orange-darkest);
+  --btn-bg-hfa: var(--color-brand-orange-dark);
+  --btn-text: var(--color-neutral-white);
+  --btn-text-hfa: var(--color-neutral-white);
+  --btn-border: var(--color-brand-orange-accent);
+  --btn-border-hfa: var(--color-brand-orange-accent);
+}
+
+.theme-indigo {
+  --brand-dark: var(--color-brand-indigo-dark);
+  --brand-darkest: var(--color-brand-indigo-darkest);
+  --accent: var(--color-brand-indigo-dark);
+  --frame: var(--color-brand-indigo-accent);
+  --btn-bg: var(--color-brand-indigo-darkest);
+  --btn-bg-hfa: var(--color-brand-indigo-dark);
+  --btn-text: var(--color-neutral-white);
+  --btn-text-hfa: var(--color-neutral-white);
+  --btn-border: var(--color-brand-indigo-accent);
+  --btn-border-hfa: var(--color-brand-indigo-accent);
+}
+
+.theme-pink {
+  --brand-dark: var(--color-brand-magenta-dark);
+  --brand-darkest: var(--color-brand-magenta-darkest);
+  --accent: var(--color-brand-magenta-dark);
+  --frame: var(--color-brand-magenta-accent);
+  --btn-bg: var(--color-brand-magenta-darkest);
+  --btn-bg-hfa: var(--color-brand-magenta-dark);
+  --btn-text: var(--color-neutral-white);
+  --btn-text-hfa: var(--color-neutral-white);
+  --btn-border: var(--color-brand-magenta-accent);
+  --btn-border-hfa: var(--color-brand-magenta-accent);
+}
+
+.theme-red {
+  --brand-dark: var(--color-brand-red-dark);
+  --brand-darkest: var(--color-brand-red-darkest);
+  --accent: var(--color-brand-red-dark);
+  --frame: var(--color-brand-red-accent);
+  --btn-bg: var(--color-brand-red-darkest);
+  --btn-bg-hfa: var(--color-brand-red-dark);
+  --btn-text: var(--color-neutral-white);
+  --btn-text-hfa: var(--color-neutral-white);
+  --btn-border: var(--color-brand-red-accent);
+  --btn-border-hfa: var(--color-brand-red-accent);
+}

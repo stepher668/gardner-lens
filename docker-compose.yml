@@ -1,0 +1,35 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: gardner_lens
+      POSTGRES_PASSWORD: gardner_lens
+      POSTGRES_DB: gardner_lens
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gardner_lens"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    environment:
+      GARDNER_LENS_DATABASE_URL: postgresql+psycopg2://gardner_lens:gardner_lens@postgres:5432/gardner_lens
+      GARDNER_LENS_CORS_ORIGINS: '["http://localhost:5173"]'
+      # Absolute, so app/seed/seed_pilot.py's "is this absolute?" check
+      # uses this mount directly rather than inferring a repo-relative path.
+      GARDNER_LENS_PILOT_DATA_DIR: /data/pilot
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data/pilot:/data/pilot
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

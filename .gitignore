@@ -1,0 +1,22 @@
+# Backend (Python)
+backend/__pycache__/
+backend/**/__pycache__/
+backend/.pytest_cache/
+backend/*.db
+backend/.env
+
+# Frontend (Node / Vite)
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+
+# Real pilot photos under data/pilot/{display,reference,visitor}/ ARE
+# committed (data/pilot/README.md explains the layout) - only the seed
+# script's auto-generated stand-ins are ignored, so a piece missing real
+# photos never accidentally commits a placeholder as if it were real.
+data/pilot/**/placeholder_*.jpg
+
+# OS/editor cruft (incl. zip-extraction artifacts from importing photo sets)
+.DS_Store
+__MACOSX/

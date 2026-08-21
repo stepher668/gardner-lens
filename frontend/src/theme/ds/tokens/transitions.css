@@ -1,0 +1,6 @@
+/* Transitions */
+:root {
+  --transition-sm: all 200ms ease-in-out; /* @kind other */
+  --transition-md: all 500ms ease; /* @kind other */
+  --transition-lg: all 1000ms ease; /* @kind other */
+}

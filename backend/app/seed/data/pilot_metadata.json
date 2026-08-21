@@ -1,0 +1,137 @@
+{
+  "_comment": "The 7-piece pilot set (PRD Section 10). Title/Creator/Room/Floor come straight from the PRD's table. Creator nationality/life-dates/places and the per-artwork date_display/description/medium below are sourced from the Claude Design export's prototype copy (Gardner Lens.dc.html ARTWORK_DATA) - plausible and internally consistent with well-known public facts, but NOT confirmed as the Museum's own official curatorial text. Per user direction (2026-08-21): use it now so the app is fully populated, but treat it as unverified pending real Museum sign-off - do not present it to the Museum as final copy. accession_number stays TODO_CONTENT (never provided anywhere); seed_pilot.py refuses to treat a TODO_CONTENT value as real content. Creator date_start/date_end are free text, not numbers (per user direction 2026-08-21) - real biographical dates are often approximate/uncertain ('About 1400', '1266 or 1267'), so these must always be quoted JSON strings, e.g. \"1856\" not 1856. place_start/place_end may be null or omitted entirely when unknown.",
+
+  "creators": {
+    "John Singer Sargent": { "creator_type": "person", "nationality_culture": "American", "date_start": "1856", "date_end": "1925", "place_start": "Florence", "place_end": "London" },
+    "Titian": { "creator_type": "person", "nationality_culture": "Italian (Venetian)", "date_start": "About 1488", "date_end": "1576", "place_start": "Pieve di Cadore", "place_end": "Venice" },
+    "Fra Angelico": { "creator_type": "person", "nationality_culture": "Italian", "date_start": "About 1400", "date_end": "1455", "place_start": "Vicchio", "place_end": "Rome" },
+    "Giotto": { "creator_type": "person", "nationality_culture": "Italian", "date_start": "1266 or 1267", "date_end": "1337", "place_start": "", "place_end": "" },
+    "Anders Zorn": { "creator_type": "person", "nationality_culture": "Swedish", "date_start": "1860", "date_end": "1920", "place_start": "Mora, Sweden", "place_end": "Mora" },
+    "Rembrandt van Rijn": { "creator_type": "person", "nationality_culture": "Dutch", "date_start": "1606", "date_end": "1669", "place_start": "Leyden", "place_end": "Amsterdam" },
+    "Isabella Stewart Gardner": { "creator_type": "person", "nationality_culture": "American", "date_start": "1840", "date_end": "1924", "place_start": "New York", "place_end": "Boston" }
+  },
+
+  "rooms": {
+    "Spanish Cloister": "1st Floor",
+    "Titian Room": "3rd Floor",
+    "Early Italian Room": "2nd Floor",
+    "Gothic Room": "3rd Floor",
+    "Short Gallery": "2nd Floor",
+    "Dutch Room": "2nd Floor"
+  },
+
+  "artworks": [
+    {
+      "slug": "el-jaleo",
+      "title": "El Jaleo",
+      "category": "Paintings",
+      "room": "Spanish Cloister",
+      "status": "on_view",
+      "date_display": "1882",
+      "date_start_year": 1882,
+      "date_end_year": 1882,
+      "description": "Sargent's monumental painting, based on drawings he made in southern Spain in 1879, is named for an Andalusian dance and is roughly translated as \"the ruckus.\" This is a painting you can hear as well as see: heels clicking, fingers snapping, hands clapping, the sounds of singing and guitars.",
+      "medium": "Oil on canvas",
+      "accession_number": "P7s1",
+      "creators": [
+        { "name": "John Singer Sargent", "role": "artist", "sort_order": 0 }
+      ]
+    },
+    {
+      "slug": "europa",
+      "title": "Europa",
+      "category": "Paintings",
+      "room": "Titian Room",
+      "status": "on_view",
+      "date_display": "about 1560–1562",
+      "date_start_year": 1560,
+      "date_end_year": 1562,
+      "description": "Bewildered, the abducted Europa clings with one hand to a horn of the god Jupiter, who appears disguised as a bull in order to seduce her. She raises the alarm to her companions on the shore with her other hand, frantically waving a length of red silk that flashes yellow in the sunlight. The women left behind return her call for help with their own signals of distress. A cherub races after the kidnapped princess on a dolphin.",
+      "medium": "Oil on canvas",
+      "accession_number": "P26e1",
+      "creators": [
+        { "name": "Titian", "role": "artist", "sort_order": 0 }
+      ]
+    },
+    {
+      "slug": "dormition-and-assumption-of-the-virgin",
+      "title": "The Dormition and Assumption of the Virgin",
+      "category": "Paintings",
+      "room": "Early Italian Room",
+      "status": "on_view",
+      "date_display": "about 1424–1434",
+      "date_start_year": 1424,
+      "date_end_year": 1434,
+      "description": "Fra Angelico’s technical and compositional innovations paved the way for a more modern manner of painting in Florence, and he found favor with important patrons, including two popes. This panel is the third in a set of four reliquaries, or containers for holy relics, depicting episodes from the Virgin’s life.",
+      "medium": "Tempera with oil glazes and gold on panel",
+      "accession_number": "P15w34",
+      "creators": [
+        { "name": "Fra Angelico", "role": "artist", "sort_order": 0 }
+      ]
+    },
+    {
+      "slug": "presentation-of-the-christ-child-in-the-temple",
+      "title": "The Presentation of the Christ Child in the Temple",
+      "category": "Paintings",
+      "room": "Gothic Room",
+      "status": "on_view",
+      "date_display": "about 1320",
+      "date_start_year": 1320,
+      "date_end_year": 1320,
+      "description": "This painting depicts the moment when Simeon and the prophetess Anna (at the right) recognize the infant Jesus as the savior. The Christ Child reaches across the altar towards his mother in a natural gesture. Giotto’s ability to create believable space within the picture and his skill at depicting emotion made him one of the most famous artists of his time.",
+      "medium": "Tempera on panel",
+      "accession_number": "P30w9",
+      "creators": [
+        { "name": "Giotto", "role": "artist", "sort_order": 0 }
+      ]
+    },
+    {
+      "slug": "portrait-of-isabella-stewart-gardner",
+      "title": "Portrait of Isabella Stewart Gardner",
+      "category": "Paintings",
+      "room": "Gothic Room",
+      "status": "on_view",
+      "date_display": "1888",
+      "date_start_year": 1888,
+      "date_end_year": 1888,
+      "description": "Mrs. Gardner sat for Sargent during his visit to Boston in January 1888. He was paid $3000 for the portrait, which was exhibited to great acclaim at Boston’s St. Botolph Club. The work also inspired gossip and legend: someone jokingly titled it “Woman: An Enigma,” while others believed that the sensuous display of flesh deliberately echoed the scandal recently created by Sargent’s Madame X. Mrs. Gardner herself said that she rejected eight renderings of the face until she was satisfied. Jack Gardner seems to have asked his wife not to publicly show the portrait again while he was alive, and indeed the portrait was placed in the Gothic Room, which remained private until Mrs. Gardner’s death. In its gallery, surrounded by altarpieces, stained glass, and religious statuary, the sacramental quality noted by nineteenth-century reviewers is even more pronounced.",
+      "medium": "Oil on canvas",
+      "accession_number": "P30w1",
+      "creators": [
+        { "name": "John Singer Sargent", "role": "artist", "sort_order": 0 }
+      ]
+    },
+    {
+      "slug": "isabella-stewart-gardner-in-venice",
+      "title": "Isabella Stewart Gardner in Venice",
+      "category": "Paintings",
+      "room": "Short Gallery",
+      "status": "on_view",
+      "date_display": "1894",
+      "date_start_year": 1894,
+      "date_end_year": 1894,
+      "description": "This lively portrait of Isabella Gardner was painted by one of her many artist friends, Anders Zorn. It shows her at the Palazzo Barbaro in Venice, where the Zorns and the Gardners spent time together in the fall of 1894. According to Jack Gardner’s diary, on the evening of October 20 his wife went out on the balcony to see a display of fireworks. Coming back into the room filled with guests, she threw open the glass doors and said, “Come out—all of you. This is too beautiful to miss.”  The picture is all about light—the artificial light inside the room and the fireworks outside. Isabella Gardner herself, wearing her trademark long string of pearls, seems to glow. Gardner conveniently installed a portrait of her husband Jack nearby, making it easy to draw comparisons (style, personality, etc.) between the two.",
+      "medium": "Oil on canvas",
+      "accession_number": "P17e10",
+      "creators": [
+        { "name": "Anders Zorn", "role": "artist", "sort_order": 0 }
+      ]
+    },
+    {
+      "slug": "self-portrait-age-23",
+      "title": "Self Portrait, Age 23",
+      "category": "Paintings",
+      "room": "Dutch Room",
+      "status": "on_view",
+      "date_display": "1629",
+      "date_start_year": 1629,
+      "date_end_year": 1629,
+      "description": "Rembrandt produced more self-portraits than any other painter in the history of European art; more than eighty of them survive. In this image, the young Rembrandt evokes an extraordinary range of textures, from the gauzy silk of the scarf to the downy feather of the cap.",
+      "medium": "Oil on oak panel",
+      "accession_number": "P21n6",
+      "creators": [
+        { "name": "Rembrandt van Rijn", "role": "artist", "sort_order": 0 }
+      ]
+    }
+  ]
+}
