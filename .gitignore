@@ -1,0 +1,23 @@
+# Backend (Python)
+backend/__pycache__/
+backend/**/__pycache__/
+backend/.pytest_cache/
+backend/*.db
+backend/.env
+
+# Frontend (Node / Vite)
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+
+# Pilot photo assets - real Museum photography is provided separately,
+# not committed to the repo (data/pilot/README.md explains the layout).
+# Generated placeholders are dev-only scaffolding, not real content.
+data/pilot/professional/*/
+data/pilot/visitor/*/
+!data/pilot/professional/.gitkeep
+!data/pilot/visitor/.gitkeep
+
+# OS/editor cruft
+.DS_Store

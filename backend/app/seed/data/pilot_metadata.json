@@ -1,0 +1,139 @@
+{
+  "_comment": "The 7-piece pilot set (PRD Section 10). Title/Creator/Room/Floor come straight from the PRD's table. Creator nationality/life-dates are well-established public biographical facts (safe to fill in), NOT Gardner-specific curatorial text. Per-artwork date_display/description/medium/accession_number ARE real museum curatorial/cataloging fields the source docs never provided - those stay TODO_CONTENT until the Museum/Steph supplies them; seed_pilot.py refuses to treat a TODO_CONTENT value as real content.",
+
+  "creators": {
+    "John Singer Sargent": { "creator_type": "person", "nationality_culture": "American", "date_start": 1856, "date_end": 1925 },
+    "Titian": { "creator_type": "person", "nationality_culture": "Italian (Venetian)", "date_start": 1488, "date_end": 1576 },
+    "Fra Angelico": { "creator_type": "person", "nationality_culture": "Italian", "date_start": 1395, "date_end": 1455 },
+    "Giotto": { "creator_type": "person", "nationality_culture": "Italian", "date_start": 1267, "date_end": 1337 },
+    "Anders Zorn": { "creator_type": "person", "nationality_culture": "Swedish", "date_start": 1860, "date_end": 1920 },
+    "Rembrandt van Rijn": { "creator_type": "person", "nationality_culture": "Dutch", "date_start": 1606, "date_end": 1669 },
+    "Isabella Stewart Gardner": { "creator_type": "person", "nationality_culture": "American", "date_start": 1840, "date_end": 1924 }
+  },
+
+  "rooms": {
+    "Spanish Cloister": "1st Floor",
+    "Titian Room": "3rd Floor",
+    "Early Italian Room": "2nd Floor",
+    "Gothic Room": "3rd Floor",
+    "Short Gallery": "2nd Floor",
+    "Dutch Room": "2nd Floor"
+  },
+
+  "artworks": [
+    {
+      "slug": "el-jaleo",
+      "title": "El Jaleo",
+      "category": "Paintings",
+      "room": "Spanish Cloister",
+      "status": "on_view",
+      "date_display": "TODO_CONTENT",
+      "date_start_year": null,
+      "date_end_year": null,
+      "description": "TODO_CONTENT",
+      "medium": "TODO_CONTENT",
+      "accession_number": "TODO_CONTENT",
+      "creators": [
+        { "name": "John Singer Sargent", "role": "artist", "sort_order": 0 }
+      ]
+    },
+    {
+      "slug": "europa",
+      "title": "Europa",
+      "category": "Paintings",
+      "room": "Titian Room",
+      "status": "on_view",
+      "date_display": "TODO_CONTENT",
+      "date_start_year": null,
+      "date_end_year": null,
+      "description": "TODO_CONTENT",
+      "medium": "TODO_CONTENT",
+      "accession_number": "TODO_CONTENT",
+      "creators": [
+        { "name": "Titian", "role": "artist", "sort_order": 0 }
+      ]
+    },
+    {
+      "slug": "dormition-and-assumption-of-the-virgin",
+      "title": "The Dormition and Assumption of the Virgin",
+      "category": "Paintings",
+      "room": "Early Italian Room",
+      "status": "on_view",
+      "date_display": "TODO_CONTENT",
+      "date_start_year": null,
+      "date_end_year": null,
+      "description": "TODO_CONTENT",
+      "medium": "TODO_CONTENT",
+      "accession_number": "TODO_CONTENT",
+      "creators": [
+        { "name": "Fra Angelico", "role": "artist", "sort_order": 0 }
+      ]
+    },
+    {
+      "slug": "presentation-of-the-christ-child-in-the-temple",
+      "title": "The Presentation of the Christ Child in the Temple",
+      "category": "Paintings",
+      "room": "Gothic Room",
+      "status": "on_view",
+      "date_display": "TODO_CONTENT",
+      "date_start_year": null,
+      "date_end_year": null,
+      "description": "TODO_CONTENT",
+      "medium": "TODO_CONTENT",
+      "accession_number": "TODO_CONTENT",
+      "creators": [
+        { "name": "Giotto", "role": "artist", "sort_order": 0 }
+      ]
+    },
+    {
+      "slug": "portrait-of-isabella-stewart-gardner",
+      "title": "Portrait of Isabella Stewart Gardner",
+      "category": "Paintings",
+      "room": "Gothic Room",
+      "status": "on_view",
+      "date_display": "TODO_CONTENT",
+      "date_start_year": null,
+      "date_end_year": null,
+      "description": "TODO_CONTENT",
+      "medium": "TODO_CONTENT",
+      "accession_number": "TODO_CONTENT",
+      "creators": [
+        { "name": "John Singer Sargent", "role": "artist", "sort_order": 0 },
+        { "name": "Isabella Stewart Gardner", "role": "subject", "sort_order": 1 }
+      ]
+    },
+    {
+      "slug": "isabella-stewart-gardner-in-venice",
+      "title": "Isabella Stewart Gardner in Venice",
+      "category": "Paintings",
+      "room": "Short Gallery",
+      "status": "on_view",
+      "date_display": "TODO_CONTENT",
+      "date_start_year": null,
+      "date_end_year": null,
+      "description": "TODO_CONTENT",
+      "medium": "TODO_CONTENT",
+      "accession_number": "TODO_CONTENT",
+      "creators": [
+        { "name": "Anders Zorn", "role": "artist", "sort_order": 0 },
+        { "name": "Isabella Stewart Gardner", "role": "subject", "sort_order": 1 }
+      ]
+    },
+    {
+      "slug": "self-portrait-age-23",
+      "title": "Self Portrait, Age 23",
+      "category": "Paintings",
+      "room": "Dutch Room",
+      "status": "on_view",
+      "date_display": "TODO_CONTENT",
+      "date_start_year": null,
+      "date_end_year": null,
+      "description": "TODO_CONTENT",
+      "medium": "TODO_CONTENT",
+      "accession_number": "TODO_CONTENT",
+      "creators": [
+        { "name": "Rembrandt van Rijn", "role": "artist", "sort_order": 0 }
+      ]
+    }
+  ]
+}
